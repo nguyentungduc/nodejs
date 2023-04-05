@@ -22,9 +22,9 @@ git clone git@github.com:nguyentungduc/nodejs.git
 ```
 sudo gem install docker-sync
 ```
-- Run docker sync stop and start
+- Run docker sync start
 ```
-docker-sync restart
+docker-sync start
 ```
 - Create folder save data mount with docker
 ```bash
