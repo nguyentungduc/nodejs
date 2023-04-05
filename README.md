@@ -13,6 +13,8 @@ To build and run this app locally you will need a few things:
 - Install [MongoDB](https://docs.mongodb.com/manual/installation/)
 - Install [VS Code](https://code.visualstudio.com/)
 - Install [Rancher](https://github.com/rancher-sandbox/rancher-desktop/releases)
+- Install [Colima](https://github.com/abiosoft/colima) (rancher or colima)
+
 
 # Getting started
 - Clone the repository
