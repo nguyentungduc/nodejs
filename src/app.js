@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { MongoClient } = require("mongodb");
+const path = require("path");
 const app = express();
 const port = 3000;
+// require('./views/css/main.css');
 
 // const uri = "mongodb://mongodb:27017";
 // // Create a new MongoClient
@@ -19,12 +21,14 @@ const port = 3000;
 //   }
 // }
 // run().catch(console.dir);
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.listen(port, () => { 
-    console.log("bbbbb");
+    console.log("aaaa");
     console.log(`b ss${port}`);
 });
 
 app.get('/', (req, res) => {
-  res.send(" mmmmm")
+  res.render('index');
 })
