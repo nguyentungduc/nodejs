@@ -4,19 +4,20 @@ const db = require("./model/index");
 const logger = require("./util/logger");
 require('dotenv').config();
 const app = express();
+const UserRoute = require('./route/user');
 
 app.set('port', process.env.PORT);
 app.set('env', process.env.APP_ENV)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use('/user', UserRoute);
 
 db.mongoose.connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => {
-    let a = 1
-    logger.info("Connected to the database !");
+    logger.info("Connected to the database !", {id: 1, name: "Duc"});
   })
   .catch(err => {
     logger.info("Cannot connect to the database", err);
@@ -24,7 +25,8 @@ db.mongoose.connect(db.url, {
   });
 
 app.listen(process.env.PORT, () => { 
-    logger.info(
+    logger.info("Connected to the database aaaa !", {id: 1, name: "Duc", tung: "aaaa"});
+    console.log(
       "App is running at http://localhost:%d in %s mode.",
       app.get("port"),
       app.get("env")
