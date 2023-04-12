@@ -1,32 +1,35 @@
 const express = require("express");
-const router = express.Router();
-const { MongoClient } = require("mongodb");
 const path = require("path");
+const db = require("./model/index");
+const logger = require("./util/logger");
+require('dotenv').config();
 const app = express();
-const port = 3000;
-// require('./views/css/main.css');
 
-// const uri = "mongodb://mongodb:27017";
-// // Create a new MongoClient
-// const client = new MongoClient(uri);
-// async function run() {
-//   try {
-//     // Connect the client to the server (optional starting in v4.7)
-//     await client.connect();
-//     // Establish and verify connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Connected successfully to server");
-//   } finally {
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
+app.set('port', process.env.PORT);
+app.set('env', process.env.APP_ENV)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.listen(port, () => { 
-    console.log("aaaa");
-    console.log(`b ss${port}`);
+db.mongoose.connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    let a = 1
+    logger.info("Connected to the database !");
+  })
+  .catch(err => {
+    logger.info("Cannot connect to the database", err);
+    process.exit();
+  });
+
+app.listen(process.env.PORT, () => { 
+    logger.info(
+      "App is running at http://localhost:%d in %s mode.",
+      app.get("port"),
+      app.get("env")
+  );
+  logger.info("  Press CTRL-C to stop\n");
 });
 
 app.get('/', (req, res) => {

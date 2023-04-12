@@ -47,7 +47,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - MONGO_URI= ${MONGO_URI}
+      - DB_MONGO_URI=${DB_MONGO_URI}
     command: npm start
     networks:
       - app-network
