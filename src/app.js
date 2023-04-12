@@ -25,7 +25,7 @@ db.mongoose.connect(db.url, {
   });
 
 app.listen(process.env.PORT, () => { 
-    logger.info("Connected to the database aaaa !", {id: 1, name: "Duc", tung: "aaaa"});
+    logger.info("Connected to the database dddddddd !", {id: 1, name: "Duc", tung: "aaaa"});
     console.log(
       "App is running at http://localhost:%d in %s mode.",
       app.get("port"),
