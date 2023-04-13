@@ -43,3 +43,46 @@ exports.findOne = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
+
+// Delete a user with the specified id in the request
+exports.destroy = async (req, res) => {
+    await UserModel.findByIdAndRemove(req.params.id).then(data => {
+        if (!data) {
+            res.status(404).send({
+                message: 'User not found',
+            });
+        } else {
+            res.send({
+                message: 'User deleted successfully'
+            });
+        }
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message,
+        })
+    });
+}
+
+// Update a user by the di in the request
+exports.update = async (req, res) => {
+    if (!req.body) {
+        res.status(404).send({
+            message: 'Data to update can not be empty!'
+        });
+    }
+    console.log(req.body);
+    const id = req.params.id;
+
+    await UserModel.findByIdAndUpdate(id, req.body).then(data => {
+        console.log(data);
+        if(!data) {
+            res.status(404).send({
+                message: "User not found",
+            })
+        } else {
+            res.send({
+                message: "User update successfully"
+            })
+        }
+    });
+}
